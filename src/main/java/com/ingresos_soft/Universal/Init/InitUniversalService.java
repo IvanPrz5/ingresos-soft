@@ -59,9 +59,9 @@ public class InitUniversalService {
         try {
             if (dataSourceRepository.count() == 0) {
                 dataSourceRepository.save(
-                        new DataSourceModel("ORGANICOS ÑAVEZ OSORIO", "OÑO120726RX3", "organicosDB", true));
+                        new DataSourceModel("ORGANICOS ÑAVEZ OSORIO", "OÑO120726RX3", "organicosIDB", true));
                 dataSourceRepository.save(
-                        new DataSourceModel("KERNEL INDUSTIA JUGUETERA", "KIJ0906199R1", "kernelDB", true));
+                        new DataSourceModel("KERNEL INDUSTIA JUGUETERA", "KIJ0906199R1", "kernelIDB", true));
             }
         } catch (Exception e) {
             log.error("Plugin: Universal, Init: InitUniversal, Method: InitEntidades, Error: ", e);
@@ -73,8 +73,13 @@ public class InitUniversalService {
         try {
             if (usuariosRepository.count() == 0) {
                 usuariosRepository.save(
-                        new UsuariosModel("Cristian", "Martinez", "email@gmail.com", new BCryptPasswordEncoder().encode("adminG5"),
-                                          LocalDate.of(1997, 4, 10), 9511234567L, true));
+                        new UsuariosModel("Cristian",
+                                          "Martinez",
+                                          "email@gmail.com",
+                                          new BCryptPasswordEncoder().encode("adminG5"),
+                                          LocalDate.of(1997, 4, 10),
+                                          9511234567L,
+                                          true));
             }
         } catch (Exception e) {
             log.error("Plugin: Universal, Init: InitUniversal, Method: InitUsuarios, Error: ", e);
