@@ -1,4 +1,4 @@
-package com.nomina_soft.Facturacion.Controllers.Sat;
+package com.ingresos_soft.Facturacion.Controllers.Sat;
 
 import com.ingresos_soft.Facturacion.Models.Sat.MotivoCancelacionModel;
 import com.ingresos_soft.Facturacion.Services.Sat.MotivoCancelacionService;

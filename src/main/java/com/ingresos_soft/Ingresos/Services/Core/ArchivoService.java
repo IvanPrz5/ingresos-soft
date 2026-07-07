@@ -23,7 +23,6 @@ public class ArchivoService {
         }
     }
 
-
     public ArchivoModel asignaMultipartFile(MultipartFile file) {
         try {
             return new ArchivoModel(file.getBytes(), file.getContentType(), file.getOriginalFilename(),

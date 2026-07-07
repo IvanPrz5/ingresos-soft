@@ -27,10 +27,12 @@ public class EntidadesController {
                     .status(HttpStatus.ACCEPTED)
                     .body(MessageResponse.success(entidadesService.findById(id)));
         } catch (Exception e) {
-            log.error("Plugin: Universal, Controller: EmpresasController, Method: FindById, Error : ", e);
+            log.error("Plugin: Universal, Controller: EmpresasController, Method: FindById, Error : ",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 
@@ -45,7 +47,8 @@ public class EntidadesController {
                       e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 
@@ -65,22 +68,30 @@ public class EntidadesController {
                             .body(MessageResponse.error(null,
                                                         "La entidad ya existe, por favor ingrese una diferente"));
                 }
-                entidadesService.saveOrUpdate(request, cer, key, formato);
+                entidadesService.saveOrUpdate(request,
+                                              cer,
+                                              key,
+                                              formato);
                 return ResponseEntity
                         .status(HttpStatus.ACCEPTED)
                         .body(MessageResponse.success(null));
 
             } else {
-                entidadesService.saveOrUpdate(request, cer, key, formato);
+                entidadesService.saveOrUpdate(request,
+                                              cer,
+                                              key,
+                                              formato);
                 return ResponseEntity
                         .status(HttpStatus.ACCEPTED)
                         .body(MessageResponse.success(null));
             }
         } catch (Exception e) {
-            log.error("Plugin: Universal, Controller: EntidadesController, Method: SaveOrUpdate, Error : ", e);
+            log.error("Plugin: Universal, Controller: EntidadesController, Method: SaveOrUpdate, Error : ",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 }

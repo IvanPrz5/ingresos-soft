@@ -1,6 +1,7 @@
-package com.ingresos_soft.Facturacion.Services.Sat;
+package com.ingresos_soft.Facturacion.Controllers.Sat;
 
 import com.ingresos_soft.Facturacion.Models.Sat.CatalogosModel;
+import com.ingresos_soft.Facturacion.Services.Sat.CatalogosService;
 import com.ingresos_soft.Universal.Utils.MessageResponse;
 import com.ingresos_soft.Universal.Utils.ResultObjectResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,12 @@ public class CatalogosController {
                     .status(HttpStatus.ACCEPTED)
                     .body(MessageResponse.success(catalogosService.findById(id)));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: CatalogosController, Method: FindById", e);
+            log.error("Plugin: Facturacion, Controller: CatalogosController, Method: FindById",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 
@@ -48,10 +51,12 @@ public class CatalogosController {
                     .status(HttpStatus.ACCEPTED)
                     .body(MessageResponse.success(catalogosService.findAll()));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: CatalogosController, Methods: FindAll, Error : ", e);
+            log.error("Plugin: Facturacion, Controller: CatalogosController, Methods: FindAll, Error : ",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 
@@ -63,10 +68,12 @@ public class CatalogosController {
                     .status(HttpStatus.ACCEPTED)
                     .body(MessageResponse.success(null));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: CatalogosController, Method: Save, Error : ", e);
+            log.error("Plugin: Facturacion, Controller: CatalogosController, Method: Save, Error : ",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 }

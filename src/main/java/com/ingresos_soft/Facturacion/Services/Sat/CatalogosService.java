@@ -23,9 +23,11 @@ public class CatalogosService {
 
     public CatalogosModel findById(Long id) {
         try {
-            return catalogosRepository.findById(id).get();
+            return catalogosRepository.findById(id)
+                                      .get();
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Service: CatalogosService, Method: Save, Error : ", e);
+            log.error("Plugin: Facturacion, Service: CatalogosService, Method: Save, Error : ",
+                      e);
             throw new NoSuchElementException();
         }
     }
@@ -34,7 +36,8 @@ public class CatalogosService {
         try {
             return catalogosRepository.findByStatus(true);
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Service: CatalogosService, Method: Save, Error : ", e);
+            log.error("Plugin: Facturacion, Service: CatalogosService, Method: Save, Error : ",
+                      e);
             throw new NoSuchElementException();
         }
     }
@@ -43,7 +46,8 @@ public class CatalogosService {
         try {
             CatalogosModel catalogosInstance;
             if (request.getId() != null) {
-                catalogosInstance = catalogosRepository.findById(request.getId()).get();
+                catalogosInstance = catalogosRepository.findById(request.getId())
+                                                       .get();
                 catalogosInstance.setStatus(request.getStatus());
             } else {
                 catalogosInstance = new CatalogosModel();
@@ -53,7 +57,8 @@ public class CatalogosService {
             catalogosInstance.setDescripcion(request.getDescripcion());
             return catalogosRepository.save(catalogosInstance);
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Service: CatalogosService, Method: Save, Error : ", e);
+            log.error("Plugin: Facturacion, Service: CatalogosService, Method: Save, Error : ",
+                      e);
             throw new IllegalArgumentException();
         }
     }

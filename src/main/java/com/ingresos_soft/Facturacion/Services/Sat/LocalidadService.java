@@ -1,4 +1,4 @@
-package com.nomina_soft.Facturacion.Services.Sat;
+package com.ingresos_soft.Facturacion.Services.Sat;
 
 import org.springframework.stereotype.Service;
 

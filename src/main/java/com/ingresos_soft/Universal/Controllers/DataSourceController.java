@@ -44,10 +44,13 @@ public class DataSourceController {
     public ResponseEntity<ResultObjectResponse> findById(@PathVariable("id") Long id) {
         try {
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body(MessageResponse.success(dataSourceService.findById(id)));
+                                 .body(MessageResponse.success(dataSourceService.findById(id)));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: EntidadesController, Method: FindById", e);
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(MessageResponse.error(null, null));
+            log.error("Plugin: Facturacion, Controller: EntidadesController, Method: FindById",
+                      e);
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+                                 .body(MessageResponse.error(null,
+                                                             null));
         }
     }
 
@@ -55,10 +58,13 @@ public class DataSourceController {
     public ResponseEntity<ResultObjectResponse> findAll() {
         try {
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body(MessageResponse.success(dataSourceService.findAll()));
+                                 .body(MessageResponse.success(dataSourceService.findAll()));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: EntidadesController, Methods: FindAll, Error : ", e);
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(MessageResponse.error(null, null));
+            log.error("Plugin: Facturacion, Controller: EntidadesController, Methods: FindAll, Error : ",
+                      e);
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+                                 .body(MessageResponse.error(null,
+                                                             null));
         }
     }
 
@@ -66,28 +72,35 @@ public class DataSourceController {
     public ResponseEntity<ResultObjectResponse> saveOrUpdate(@RequestBody DataSourceModel request) {
         try {
             dataSourceService.saveOrUpdate(request);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(MessageResponse.success(null));
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                                 .body(MessageResponse.success(null));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: EntidadesController, Method: Save, Error : ", e);
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(MessageResponse.error(null, null));
+            log.error("Plugin: Facturacion, Controller: EntidadesController, Method: Save, Error : ",
+                      e);
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+                                 .body(MessageResponse.error(null,
+                                                             null));
         }
     }
 
     @PostMapping("/init-datasource/{idDataSource}")
     public ResponseEntity<?> initializeEntity(@PathVariable Long idDataSource) {
         try {
-            log.info("=== Inicialización de datasource ID: {} ===", idDataSource);
+            log.info("=== Inicialización de datasource ID: {} ===",
+                     idDataSource);
 
             // Buscar la entidad
             DataSourceModel dataSource = dataSourceRepository.findById(idDataSource)
-                    .orElseThrow(() -> new RuntimeException("Data Source no encontrada"));
+                                                             .orElseThrow(() -> new RuntimeException("Data Source no encontrada"));
 
             if (!dataSource.getStatus()) {
-                return ResponseEntity.badRequest().body("La data source está inactiva");
+                return ResponseEntity.badRequest()
+                                     .body("La data source está inactiva");
             }
 
             String databaseName = dataSource.getNameDatabase();
-            log.info("Base de datos: {}", databaseName);
+            log.info("Base de datos: {}",
+                     databaseName);
 
             // Registrar datasource
             dataSourceService.registerDataSource(databaseName);
@@ -104,6 +117,7 @@ public class DataSourceController {
                 initFacturacionService.initBancos();
                 initFacturacionService.initMotivoCancelacion();
                 initFacturacionService.initFormaPago();
+                initFacturacionService.initMetodoPago();
                 initFacturacionService.initRegimenFiscal();
                 initFacturacionService.initPais();
                 initFacturacionService.initEstados();
@@ -111,19 +125,26 @@ public class DataSourceController {
                 initFacturacionService.initGenero();
                 initFacturacionService.initPeriodicidad();
                 initFacturacionService.initUsoCfdi();
+                initFacturacionService.initTipoFactor();
+                initFacturacionService.initComprobante();
+                initFacturacionService.initObjetoImpuesto();
+                initFacturacionService.initTasaCuota();
 
-                log.info("=== Inicialización completada para: {} ===", databaseName);
+                log.info("=== Inicialización completada para: {} ===",
+                         databaseName);
 
-                return ResponseEntity.ok().body("DataSource inicializada exitosamente: " + dataSource.getRazonSocial());
+                return ResponseEntity.ok()
+                                     .body("DataSource inicializada exitosamente: " + dataSource.getRazonSocial());
 
             } finally {
                 DatabaseContext.clear();
             }
 
         } catch (Exception e) {
-            log.error("Error al inicializar datasource", e);
+            log.error("Error al inicializar datasource",
+                      e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al inicializar datasource  : " + e.getMessage());
+                                 .body("Error al inicializar datasource  : " + e.getMessage());
         }
     }
 
@@ -131,16 +152,19 @@ public class DataSourceController {
     public ResponseEntity<?> testDataSource(@PathVariable Long idDataSource) {
         try {
             DataSourceModel dataSource = dataSourceRepository.findById(idDataSource)
-                    .orElseThrow(() -> new RuntimeException("Data Source no encontrada"));
+                                                             .orElseThrow(() -> new RuntimeException("Data Source no encontrada"));
 
             String databaseName = dataSource.getNameDatabase();
             dataSourceService.registerDataSource(databaseName);
 
-            return ResponseEntity.ok().body("Datasource registrado: " + databaseName);
+            return ResponseEntity.ok()
+                                 .body("Datasource registrado: " + databaseName);
 
         } catch (Exception e) {
-            log.error("Error al probar datasource", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+            log.error("Error al probar datasource",
+                      e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error: " + e.getMessage());
         }
     }
 }

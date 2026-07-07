@@ -1,4 +1,4 @@
-package com.nomina_soft.Facturacion.Controllers.Sat;
+package com.ingresos_soft.Facturacion.Controllers.Sat;
 
 import com.ingresos_soft.Facturacion.Models.Sat.EstadoCivilModel;
 import com.ingresos_soft.Facturacion.Services.Sat.EstadoCivilService;
@@ -35,10 +35,12 @@ public class EstadoCivilController {
                     .status(HttpStatus.ACCEPTED)
                     .body(MessageResponse.success(estadoCivilService.findById(id)));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: EstadosController, Method: FindByIdAndStatus, Error: ", e);
+            log.error("Plugin: Facturacion, Controller: EstadosController, Method: FindByIdAndStatus, Error: ",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 
@@ -49,10 +51,12 @@ public class EstadoCivilController {
                     .status(HttpStatus.ACCEPTED)
                     .body(MessageResponse.success(estadoCivilService.findAll()));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: EstadoController, Method: FindAll, Error: ", e);
+            log.error("Plugin: Facturacion, Controller: EstadoController, Method: FindAll, Error: ",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 
@@ -64,10 +68,12 @@ public class EstadoCivilController {
                     .status(HttpStatus.ACCEPTED)
                     .body(MessageResponse.success(null));
         } catch (Exception e) {
-            log.error("Plugin: Facturacion, Controller: EstadoCivilController, Method: Save, Error: ", e);
+            log.error("Plugin: Facturacion, Controller: EstadoCivilController, Method: Save, Error: ",
+                      e);
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(MessageResponse.error(null, null));
+                    .body(MessageResponse.error(null,
+                                                null));
         }
     }
 }
